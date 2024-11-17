@@ -1,0 +1,43 @@
+﻿@model List<BookViewModel>
+
+<h2>Dostupne Knjige</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Naziv</th>
+            <th>Autor</th>
+            <th>Cena</th>
+            <th>Količina</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.BookId</td>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Price</td>
+                <td>@book.Quantity</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@book.BookId" class="btn btn-info">Pogledaj Detalje</a>
+                    <a asp-action="Buy" asp-route-id="@book.BookId" class="btn btn-success">Buy</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+    @if (TempData["Message"] != null)
+    {
+        <text>
+                    showAlert('@TempData["MessageType"]', '@TempData["Message"]');
+        </text>
+    }
+    });
+</script>
+

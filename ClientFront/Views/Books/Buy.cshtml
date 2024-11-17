@@ -1,0 +1,26 @@
+﻿@model BookViewModel
+
+<h2>Kupovina knjige - @Model.Title</h2>
+
+<p><strong>Autor:</strong> @Model.Author</p>
+<p><strong>Žanr:</strong> @Model.Genre</p>
+<p><strong>Cena:</strong>  @string.Format("{0:C}", Model.Price)</p>
+<p><strong>Raspoloživa količina:</strong> @Model.Quantity</p>
+
+<form asp-action="Buy" method="post">
+    <input type="hidden" asp-for="BookId" />
+
+    <div class="form-group">
+        <label for="userId">Unesite ID korisnika:</label>
+        <input type="number" id="userId" name="userId" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Quantity">Količina:</label>
+        <input asp-for="Quantity" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Potvrdi Kupovinu</button>
+</form>
+
+<a asp-action="Index">Nazad na listu</a>

@@ -1,0 +1,25 @@
+﻿@model CustomerViewModel
+
+@{
+    ViewData["Title"] = "Detalji Bankovnog Računa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalji o korisniku</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Račun za: @Model.FullName</h4>
+        <p class="card-text"><strong>Raspoloživi Balans:</strong> @Model.AccountBalance.ToString("C")</p>
+        <h5>Kupljene knjige:</h5>
+        <ul>
+            @foreach (var book in Model.PurchasedBooks)
+            {
+                <li>@book.Title - @book.Author</li>
+            }
+        </ul>
+    </div>
+</div>
+
+<a href="@Url.Action("Index", "Bank")" class="btn btn-secondary mt-3">Nazad na Pregled</a>
+

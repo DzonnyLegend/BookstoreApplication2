@@ -1,0 +1,38 @@
+﻿@model List<CustomerViewModel>
+
+<h2>Korisnici Banke</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ime i Prezime</th>
+            <th>Balans na Računu</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.UserId</td>
+                <td>@customer.FullName</td>
+                <td>@customer.AccountBalance.ToString("C")</td>
+                <td>
+                    <a href="@Url.Action("Details", "Bank", new { userId = customer.UserId })" class="btn btn-info">Pogledaj Detalje</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+    @if (TempData["Message"] != null)
+    {
+        <text>
+                    showAlert('@TempData["MessageType"]', '@TempData["Message"]');
+        </text>
+    }
+    });
+</script>
+
